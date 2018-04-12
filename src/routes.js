@@ -9,7 +9,7 @@ import Page4 from "./views/nav2/Page4.vue";
 import Page5 from "./views/nav2/Page5.vue";
 import Page6 from "./views/nav3/Page6.vue";
 import echarts from "./views/charts/echarts.vue";
-import cesium_demo from "./views/cesium/cesium-demo.vue";
+// import cesium_demo from "./views/cesium/cesium-demo.vue";
 
 let routes = [
     {
@@ -66,16 +66,16 @@ let routes = [
             {path: "/echarts", component: echarts, name: "echarts"}
         ]
     },
-    {
-        path:"/",
-        component: Home,
-        name:"Cesium",
-        iconCls:"fa fa-message",
-        leaf: true,
-        children:[
-            {path:"/cesium-demo",component: cesium_demo, name: "Cesium"}
-        ]
-    },
+    // {
+    //     path:"/",
+    //     component: Home,
+    //     name:"Cesium",
+    //     iconCls:"fa fa-message",
+    //     leaf: true,
+    //     children:[
+    //         {path:"/cesium-demo",component: cesium_demo, name: "Cesium"}
+    //     ]
+    // },
     {
         path: "*",
         hidden: true,

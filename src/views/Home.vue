@@ -28,6 +28,9 @@
                         <i class="fa fa-align-justify"></i>
                     </div>
                 </el-col>
+                <el-col :span="10">
+                    <el-button round>添加</el-button>
+                </el-col>
                 <el-col :span="4" class="userinfo">
                     <el-dropdown trigger="hover">
                     <span class="el-dropdown-link userinfo-inner"><img
