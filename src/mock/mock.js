@@ -156,15 +156,28 @@ export default {
             });
         });
 
-        //mock测试
-        mock.onGet("/test").reply((config) => {
+        var Enums = {
+            attributeType: ["INT", "STRING", "BOOLEAN", "FLOAT", "DOUBLE", "DATE", "TIME", "DATETIME"]
+        };
+
+        // 获取Enum
+        mock.onGet("/getEnum").reply((config) => {
             let {name} = config.params;
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    resolve([200, {
-                        code: 200,
-                        msg: "测试成功"
-                    }]);
+                    try {
+                        resolve([200, {
+                            code: 200,
+                            msg: "测试成功",
+                            data: Enums[name]
+                        }]);
+                    } catch (e) {
+                        resolve([200, {
+                            code: 200,
+                            msg: "没有相关数据",
+                            data: []
+                        }]);
+                    }
                 }, 2000);
             });
         });
