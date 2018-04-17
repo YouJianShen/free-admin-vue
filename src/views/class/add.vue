@@ -18,7 +18,7 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="类型" prop="type">
-                    <template scope="scope">
+                    <template :aaa="console.log($store);" scope="scope">
                         <el-select v-model="scope.row.type" placeholder="字段类型">
                             <el-option v-for="item in $store.enum.attributeType">{{item}}</el-option>
                         </el-select>
