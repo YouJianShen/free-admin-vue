@@ -33,7 +33,7 @@
             <el-table-column prop="addr" label="地址" min-width="180" sortable>
             </el-table-column>
             <el-table-column label="操作" width="150">
-                <template scope="scope">
+                <template slot-scope="scope">
                     <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button type="danger" size="mini" @click="handleDel(scope.$index, scope.row)">删除</el-button>
                 </template>
@@ -105,20 +105,6 @@
             </div>
         </el-dialog>
 
-        <!--栏目新增-->
-        <el-dialog title="新增栏目" :visible.sync="isClassEditShow">
-            <el-form :model="classInfoModel">
-                <el-form-item label="名称">
-                    <el-input type="text" placeholder="栏目名称"></el-input>
-                </el-form-item>
-                <el-form-item label="描述">
-                    <el-input type="text" placeholder="栏目名称"></el-input>
-                </el-form-item>
-                <el-form-item label="属性">
-                    <el-input type="text" placeholder="栏目属性"></el-input>
-                </el-form-item>
-            </el-form>
-        </el-dialog>
     </section>
 </template>
 

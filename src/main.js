@@ -4,17 +4,20 @@ import App from "./App";
 import ElementUI from "element-ui";
 import locale from "element-ui/lib/locale/lang/en";
 import "element-ui/lib/theme-chalk/index.css";
+import "font-awesome/css/font-awesome.min.css";
+import "nprogress/nprogress.css";
+
 // import './assets/theme/theme-green/index.css'
 import VueRouter from "vue-router";
 import store from "./vuex/store";
 import Vuex from "vuex";
 import NProgress from "nprogress";
-import "nprogress/nprogress.css";
+
 import routes from "./routes";
 import Mock from "./mock";
+import "./views/views";
 
 Mock.bootstrap();
-import "font-awesome/css/font-awesome.min.css";
 
 Vue.use(ElementUI, {locale});
 Vue.use(VueRouter);

@@ -19,4 +19,4 @@ export const addUser = (params) => axios.get(`${base}/user/add`, {params: params
 export const testAxios = (params) => axios.get(`${base}/test`, {params: params});
 
 // 获取枚举类型
-export const getEnum = (params) => axios.get(`${base}/getEnum`, {params: params});
+export const getEnum = (params) => axios.get(`${base}/enum`, {params: params});

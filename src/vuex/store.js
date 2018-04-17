@@ -2,12 +2,17 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as actions from "./actions";
 import * as getters from "./getters";
+import api from "../api/api";
 
 Vue.use(Vuex);
 
 // 应用初始状态
 const state = {
-    count: 10
+    count: 10,
+    enum: {
+        attributeType: null
+    },
+    class: {}
 };
 
 // 定义所需的 mutations
@@ -17,6 +22,13 @@ const mutations = {
     },
     DECREMENT(state) {
         state.count--;
+    },
+    UPDATE_ATTRIBUTE_TYPE(state) {
+        api.getEnum({
+            name: "AttributeType"
+        }).then(function (data) {
+            console.log(data);
+        });
     }
 };
 
