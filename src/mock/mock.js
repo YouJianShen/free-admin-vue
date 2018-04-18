@@ -157,20 +157,16 @@ export default {
         });
 
         var Enums = {
-            attributeType: ["INT", "STRING", "BOOLEAN", "FLOAT", "DOUBLE", "DATE", "TIME", "DATETIME"]
+            AttributeType: ["INT", "STRING", "BOOLEAN", "FLOAT", "DOUBLE", "DATE", "TIME", "DATETIME"]
         };
 
         // 获取Enum
-        mock.onGet("/getEnum").reply((config) => {
+        mock.onGet("/enum").reply((config) => {
             let {name} = config.params;
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     try {
-                        resolve([200, {
-                            code: 200,
-                            msg: "测试成功",
-                            data: Enums[name]
-                        }]);
+                        resolve([200, Enums[name]]);
                     } catch (e) {
                         resolve([200, {
                             code: 200,
@@ -178,7 +174,7 @@ export default {
                             data: []
                         }]);
                     }
-                }, 2000);
+                }, 500);
             });
         });
 

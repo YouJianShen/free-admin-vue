@@ -2,14 +2,14 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as actions from "./actions";
 import * as getters from "./getters";
-import api from "../api/api";
+import {getEnum} from "../api/api";
 
 Vue.use(Vuex);
 
 // 应用初始状态
 const state = {
     count: 10,
-    enum: {
+    _enum: {
         attributeType: null
     },
     class: {}
@@ -24,10 +24,12 @@ const mutations = {
         state.count--;
     },
     UPDATE_ATTRIBUTE_TYPE(state) {
-        api.getEnum({
+        getEnum({
             name: "AttributeType"
-        }).then(function (data) {
-            console.log(data);
+        }).then(function (res) {
+            if (res.status == 200) {
+                state._enum.attributeType = res.data;
+            }
         });
     }
 };

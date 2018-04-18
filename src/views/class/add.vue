@@ -18,30 +18,41 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="类型" prop="type">
-                    <template :aaa="console.log($store);" scope="scope">
-                        <el-select v-model="scope.row.type" placeholder="字段类型">
-                            <el-option v-for="item in $store.enum.attributeType">{{item}}</el-option>
+                    <template scope="scope">
+                        <el-select size="mini" v-model="scope.row.type" placeholder="字段类型">
+                            <el-option :value="item" v-for="item in getEnum()['attributeType']">{{item}}</el-option>
                         </el-select>
                     </template>
                 </el-table-column>
-                <el-table-column label="字段长度" prop="length"></el-table-column>
+                <el-table-column label="字段长度" prop="length">
+                    <template slot-scope="scope">
+                        <el-input size="mini" name='length' v-model="scope.row.length"></el-input>
+                    </template>
+                </el-table-column>
                 <el-table-column label="允许为空" width="160" prop="allowNull">
                     <template scope="scope">
                         <el-radio v-model="scope.row.allowNull" label="true">是</el-radio>
                         <el-radio v-model="scope.row.allowNull" label="false">否</el-radio>
                     </template>
                 </el-table-column>
-                <el-table-column label="默认值" prop="defaultValue"></el-table-column>
+                <el-table-column label="默认值" prop="defaultValue">
+                    <template slot-scope="scope">
+                        <el-input size="mini" name='defaultValue' v-model="scope.row.defaultValue"></el-input>
+                    </template>
+                </el-table-column>
             </el-table>
         </el-form>
         <div slot="footer" class="dialog-footer">
             <el-button size="medium" @click.native="isClassEditShow = false;">取消</el-button>
-            <el-button size="medium" type="primary" @click="addClassOnSubmit">提交</el-button>
+            <el-button size="medium" type="primary">提交</el-button>
         </div>
     </el-row>
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+    import {mapActions} from 'vuex';
+
     export default {
         data(){
             return {
@@ -64,11 +75,16 @@
                 }
             }
         },
-        methods:{
-
+        methods: {
+            ...mapGetters([
+                "getEnum"
+            ]),
+            ...mapActions([
+                "updateAttribute"
+            ])
         },
         mounted() {
-            console.log("mounted");
+
         }
     }
 </script>

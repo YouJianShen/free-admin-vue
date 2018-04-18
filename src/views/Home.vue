@@ -65,13 +65,15 @@
         </section>
 
         <!--栏目新增-->
-        <el-dialog title="新增栏目" :visible.sync="isClassEditShow">
+        <el-dialog width="80%" title="新增栏目" :visible.sync="isClassEditShow">
             <class-add-view></class-add-view>
         </el-dialog>
     </el-row>
 </template>
 
 <script>
+    import {mapActions} from 'vuex';
+
     export default {
         data() {
             return {
@@ -93,6 +95,7 @@
             }
         },
         methods: {
+            ...mapActions(["updateAttributeType"]),
             onSubmit() {
                 console.log('submit!');
             },
@@ -124,6 +127,7 @@
                 this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-' + i)[0].style.display = status ? 'block' : 'none';
             },
             handleCLassAdd: function () {
+                this.updateAttributeType();
                 this.isClassEditShow = true;
             },
             addClassOnSubmit: function () {
