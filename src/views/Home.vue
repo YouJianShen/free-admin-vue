@@ -65,8 +65,13 @@
         </section>
 
         <!--栏目新增-->
-        <el-dialog width="80%" title="新增栏目" :visible.sync="isClassEditShow">
-            <class-add-view></class-add-view>
+        <el-dialog class="addClass" style="padding-bottom:20px" width="80%" title="新增栏目"
+                   :visible.sync="isClassEditShow">
+            <class-add-view ref="classAddForm"></class-add-view>
+            <div slot="footer" class="dialog-footer">
+                <el-button size="medium" @click.native="isClassEditShow = false;">取消</el-button>
+                <el-button @click="onClassAdd()" size="medium" type="primary">提交</el-button>
+            </div>
         </el-dialog>
     </el-row>
 </template>
@@ -132,6 +137,19 @@
             },
             addClassOnSubmit: function () {
                 alert("a");
+            },
+            /**
+             * 添加栏目点击
+             */
+            onClassAdd: function () {
+                let _this = this;
+                _this.$refs.classAddForm.submit(function () {
+                    _this.isClassEditShow = false;
+                    _this.$message({
+                        message: '保存成功',
+                        type: 'success'
+                    });
+                });
             }
         },
         mounted() {
@@ -234,6 +252,12 @@
         .content-wrapper {
             background-color: #fff;
             box-sizing: border-box;
+        }
+    }
+
+    .addClass {
+        .el-dialog__body {
+            padding-bottom: 20px;
         }
     }
 

@@ -178,5 +178,48 @@ export default {
             });
         });
 
+        // 创建class
+        mock.onPost("/createClass").reply((config) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    try {
+                        resolve([200, {
+                            code: 200,
+                            msg: "操作成功",
+                            data: []
+                        }]);
+                    } catch (e) {
+                        resolve([200, {
+                            code: 200,
+                            msg: "没有相关数据",
+                            data: []
+                        }]);
+                    }
+                }, 500);
+            });
+        });
+
+        /**
+         * 获取class
+         */
+        mock.onPost("/get").reply((config) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    try {
+                        resolve([200, {
+                            code: 200,
+                            msg: "操作成功",
+                            data: []
+                        }]);
+                    } catch (e) {
+                        resolve([200, {
+                            code: 200,
+                            msg: "没有相关数据",
+                            data: []
+                        }]);
+                    }
+                }, 500);
+            });
+        });
     }
 };

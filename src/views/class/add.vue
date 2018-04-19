@@ -1,15 +1,13 @@
 <template>
-    <el-row>
-        <el-form :model="classInfoModel" :rules="classFormRules" label-width="80px" ref="classEditForm">
+    <div>
+        <el-form :model="classInfoModel" :rules="rules" label-width="80px" ref="form">
             <el-form-item label="名称" prop="name">
                 <el-input v-model="classInfoModel.name" placeholder="栏目名称"></el-input>
             </el-form-item>
             <el-form-item label="描述">
                 <el-input v-model="classInfoModel.ClassDesc" type="text" placeholder="栏目描述"></el-input>
             </el-form-item>
-            <el-form-item label="栏目属性">
-                <el-button size="small" type="primary">添加属性</el-button>
-            </el-form-item>
+
             <el-table size='small' :data="classInfoModel.attributes">
                 <el-table-column label="序号" type="index" width="60"></el-table-column>
                 <el-table-column label="属性名称" prop="name">
@@ -41,37 +39,58 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <el-form-item>
+                <el-button @click="addProps()" size="small" type="primary">添加属性</el-button>
+            </el-form-item>
         </el-form>
-        <div slot="footer" class="dialog-footer">
-            <el-button size="medium" @click.native="isClassEditShow = false;">取消</el-button>
-            <el-button size="medium" type="primary">提交</el-button>
-        </div>
-    </el-row>
+
+    </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex';
     import {mapActions} from 'vuex';
+    import utils from '../../utils';
+    import {createClass} from "../../api/api";
 
     export default {
-        data(){
+        data() {
+            let validateAttribute = function () {
+                console.log(arguments);
+            };
             return {
                 isClassEditShow: false,
+                attrDefault: {
+                    belongsId: "",
+                    name: "",
+                    type: "STRING",
+                    length: "50",
+                    allowNull: "true",
+                    defaultValue: ""
+                },
                 classInfoModel: {
                     name: "默认",
                     ClassDesc: "默认",
                     parentId: "默认",
                     attributes: [{
-                        belongsId: "默认",
-                        name: "默认",
+                        belongsId: "1",
+                        name: "1",
                         type: "STRING",
-                        length: "默认",
+                        length: "50",
                         allowNull: "true",
-                        defaultValue: "默认"
+                        defaultValue: ""
+                    }, {
+                        belongsId: "2",
+                        name: "2",
+                        type: "STRING",
+                        length: "150",
+                        allowNull: "false",
+                        defaultValue: ""
                     }]
                 },
-                classFormRules: {
-                    name: {required: true, message: '请输入栏目名称', trigger: 'blur'}
+                rules: {
+                    name: {required: true, message: '请输入栏目名称', trigger: 'blur'},
+                    attributes: {validator: validateAttribute, trigger: "blur"}
                 }
             }
         },
@@ -81,7 +100,19 @@
             ]),
             ...mapActions([
                 "updateAttribute"
-            ])
+            ]),
+            addProps: function () {
+                console.log(this.classInfoModel.attributes);
+                console.log(this.attrDefault);
+                this.classInfoModel.attributes.push(Object.assign({}, this.attrDefault));
+            },
+            submit: function (callback) {
+                this.$refs.form.validate((valid) => {
+                   if(valid){
+                       createClass(this.classInfoModel).then(callback);
+                   }
+                });
+            }
         },
         mounted() {
 
@@ -89,6 +120,8 @@
     }
 </script>
 
-<style lang="sass">
-
+<style lang="scss" scoped>
+    .dialog-footer {
+        text-align: right;
+    }
 </style>

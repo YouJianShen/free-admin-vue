@@ -20,3 +20,7 @@ export const testAxios = (params) => axios.get(`${base}/test`, {params: params})
 
 // 获取枚举类型
 export const getEnum = (params) => axios.get(`${base}/enum`, {params: params});
+
+// 添加栏目
+export const createClass = (params) => axios.post(`${base}/createClass`, {params: params});
+
