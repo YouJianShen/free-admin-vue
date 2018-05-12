@@ -9,6 +9,7 @@ import Page4 from "./views/nav2/Page4.vue";
 import Page5 from "./views/nav2/Page5.vue";
 import Page6 from "./views/nav3/Page6.vue";
 import echarts from "./views/charts/echarts.vue";
+import Http from "./views/debug/Http.vue";
 // import cesium_demo from "./views/cesium/cesium-demo.vue";
 
 let routes = [
@@ -64,6 +65,15 @@ let routes = [
         iconCls: "fa fa-bar-chart",
         children: [
             {path: "/echarts", component: echarts, name: "echarts"}
+        ]
+    },
+    {
+        path: "/",
+        component: Home,
+        name: "调试",
+        iconCls: "fa fa-config",
+        children: [
+            {path: "/http", component: Http, name: "接口调试"}
         ]
     },
     // {
