@@ -10,6 +10,7 @@ import Page5 from "./views/nav2/Page5.vue";
 import Page6 from "./views/nav3/Page6.vue";
 import echarts from "./views/charts/echarts.vue";
 import Http from "./views/debug/Http.vue";
+import PhoneFrom from "./views/PhoneFrom";
 // import cesium_demo from "./views/cesium/cesium-demo.vue";
 
 let routes = [
@@ -22,6 +23,12 @@ let routes = [
     {
         path: "/404",
         component: NotFound,
+        name: "",
+        hidden: true
+    },
+    {
+        path: "/phone/analysis",
+        component: PhoneFrom,
         name: "",
         hidden: true
     },

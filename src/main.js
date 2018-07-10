@@ -23,7 +23,7 @@ Vue.use(ElementUI, {locale});
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({showSpinner: false});
 
 const router = new VueRouter({
     routes
@@ -31,11 +31,16 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     NProgress.start();
+
     if (to.path == "/login") {
         sessionStorage.removeItem("user");
     }
     let user = JSON.parse(sessionStorage.getItem("user"));
-    if (!user && to.path != "/login") {
+
+    if (to.path == "/phone/analysis") {
+        console.log(222);
+        next();
+    } else if (!user && to.path != "/login") {
         next({path: "/login"});
     } else {
         next();

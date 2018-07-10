@@ -1,13 +1,68 @@
 @import "vars";
 
+body {
+  background: #f2f2f2;
+}
+
 * {
   box-sizing: border-box;
+}
+
+.fill {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.title {
+  font-weight: 400;
+  color: #1f2f3d;
+  margin: 15px 0 5px;
+  font-size: 22px;
+}
+
+.hide {
+  display: none !important;
+}
+
+.list-selector {
+  transition: all .3s ease;
+}
+
+.list-selector:hover {
+  background: #f5f5f5;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.cursor-default * {
+  cursor: default;
+}
+
+.float-right > * {
+  float: right;
+}
+
+.page {
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 2px #ddd;
+  position: relative;
+}
+
+.content {
+  padding: 10px;
+  background: #fff;
 }
 
 .container {
   width: 100%;
   height: 100%;
-  background-color: $bg-normal;
   position: relative;
 
   .el-col {
@@ -29,6 +84,15 @@
 .vertical-center > *:not(vt_center) {
   display: inline-block;
   vertical-align: middle;
+}
+
+.ab_center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
 }
 
 .text-center {
@@ -63,6 +127,173 @@
 
 .fade-in {
   animation: fade-in .3s .3s ease;
+}
+
+//progress
+.progress_mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.progress_mask .el-progress {
+  width: 15%;
+  height: 40px;
+}
+
+.progress_mask .el-progress .el-progress-bar__outer {
+  background-color: #444444;
+}
+
+.left_bottom {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.left_top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+//base layout
+
+.border-layout-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.border-layout-left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.border-layout-top {
+  position: absolute;
+  right: 0;
+  top: 0;
+  top: 0;
+  left: 0;
+}
+
+.border-layout-bottom {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.border-layout-center {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+.tool-bar {
+  height: 60px;
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+}
+
+.right_bottom {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.right_top {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.left_bottom {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.left_top {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+//map
+
+.tool-container {
+  z-index: 1000;
+  position: absolute;
+  width: 30px;
+  right: 10px;
+  top: 60px;
+}
+
+.tool-container > * {
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.map-tool-item > img {
+  width: 100%;
+}
+
+.map-tool-item:hover {
+  background: #eee;
+}
+
+.measure-tool-active * {
+  cursor: crosshair !important;
+}
+
+.measure-info {
+  text-align: center;
+  color: #1296db;
+  background: #fff;
+  padding: 5px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  width: 150px;
+  font-size: 20px;
+  margin: auto;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+}
+
+.hover_panel {
+  background: #fff;
+  border-radius: 3px;
+  transition: .2s;
+  padding: 0 14px;
+  opacity: 0.8;
+  position: absolute;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.label {
+  margin: 0 6px;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #606266;
+  line-height: 40px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @-webkit-keyframes fade-in {
@@ -109,7 +340,6 @@
   }
 }
 
-//elementui addition
-.form-last-item {
-  margin-bottom: 0!important;
+#think_page_trace_open {
+  display: none;
 }

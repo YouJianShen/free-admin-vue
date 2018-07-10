@@ -4,6 +4,9 @@ import {LoginUsers, Users} from "./data/user";
 
 let _Users = Users;
 
+var host = window.location.origin;
+var http = host + "/"
+
 export default {
 
     /**
@@ -216,6 +219,30 @@ export default {
                             code: 200,
                             msg: "没有相关数据",
                             data: []
+                        }]);
+                    }
+                }, 500);
+            });
+        });
+
+        /**
+         * 查询归属地址
+         */
+        mock.onGet(`${http}/phone/analysis`).reply((config) => {
+
+            var data = {
+                from:"四川省成都市"
+            }
+
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    try {
+                        resolve([200, Enums[name]]);
+                    } catch (e) {
+                        resolve([200, {
+                            code: 200,
+                            msg: "没有相关数据",
+                            data: data
                         }]);
                     }
                 }, 500);
