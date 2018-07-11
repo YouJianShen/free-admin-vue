@@ -5,7 +5,7 @@ import {LoginUsers, Users} from "./data/user";
 let _Users = Users;
 
 var host = window.location.origin;
-var http = host + "/"
+var http = host + "/free-admin";
 
 export default {
 
@@ -228,25 +228,26 @@ export default {
         /**
          * 查询归属地址
          */
-        mock.onGet(`${http}/phone/analysis`).reply((config) => {
+        mock.onGet(`${http}/phone/from`).reply((config) => {
 
             var data = {
-                from:"四川省成都市"
-            }
+                "code": null,
+                "data": {"carrier": "移动", "cityName": "绵阳市", "provinceName": "四川"},
+                "msg": "操作成功!",
+                "other": null,
+                "success": true
+            };
 
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     try {
-                        resolve([200, Enums[name]]);
+                        resolve([200, data]);
                     } catch (e) {
-                        resolve([200, {
-                            code: 200,
-                            msg: "没有相关数据",
-                            data: data
-                        }]);
+                        resolve([200, data]);
                     }
                 }, 500);
             });
         });
+
     }
 };

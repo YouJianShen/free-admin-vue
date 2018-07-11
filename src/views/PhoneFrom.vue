@@ -5,12 +5,13 @@
 
             <el-form ref="form" label-width="120px" style="padding:40px 10px" :model="formData" :rules="rules">
                 <el-form-item label="手机号码:" prop="phone">
-                    <el-input placeholder="请输入查询的手机号码" style="width:400px" v-model="formData.phone"></el-input>
+                    <el-input @keypress="filterNumber" placeholder="请输入查询的手机号码" style="width:400px"
+                              v-model="formData.phone"></el-input>
                     <el-button style="margin-left:10px" type="primary" @click="search">查询</el-button>
                 </el-form-item>
 
                 <el-form-item label="查询结果:" style="margin-top:40px;">
-                    <el-input type="textarea" style="width:400px" v-model="from" readonly></el-input>
+                    <el-input type="textarea" style="width:400px;" v-model="from" readonly></el-input>
                 </el-form-item>
             </el-form>
         </section>
@@ -21,34 +22,58 @@
     import utils from "../common/js/utils";
     import {getPhoneFrom} from "../api/api";
 
+    function isvalidPhone(value) {
+        return utils.regex.TELEPHONE_NUM.test(value);
+    }
+
+    var validPhone = (rule, value, callback) => {
+        if (!value) {
+            callback(new Error('请输入电话号码'))
+        } else if (!isvalidPhone(value)) {
+            callback(new Error('请输入正确的11位手机号码'))
+        } else {
+            callback()
+        }
+    }
+
     export default {
         name: "PhoneFrom",
         data() {
             return {
-                formData:{
+                formData: {
                     phone: ""
                 },
                 from: "",
-                rules: utils.getRules({
-                    phone: "电话号码"
-                })
+                rules: {
+                    phone: [{
+                        required: true, message: '请输入正确的电话号码', trigger: 'blur', validator: validPhone
+                    }]
+                },
+
+                test: []
             }
         },
         methods: {
             search: function () {
                 var _this = this;
                 this.$refs.form.validate((valid) => {
-                    if(valid){
-                        getPhoneFrom({phone: this.phone}).then((result) => {
+                    if (valid) {
+                        console.log(_this.formData.phone);
+                        getPhoneFrom({phone: _this.formData.phone}).then((result) => {
                             utils.resolveResult(_this.$message, result, (data) => {
-                                _this.from = data.from;
+                                _this.from = "运营商：" + data.carrier + "\n归属地：" + data.provinceName + data.cityName;
                             });
                         });
                     }
                 });
+            },
+            filterNumber: function () {
             }
         },
         mounted() {
+        },
+        created: function () {
+            var _this = this;
         }
     }
 </script>

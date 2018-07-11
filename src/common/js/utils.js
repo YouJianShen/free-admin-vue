@@ -675,9 +675,10 @@ function createNode(htmlStr) {
  * @param success
  */
 function resolveResult(message, result, success, complete) {
+    console.log(result);
     if (result.code == 200 || result.status == 200) {
         var data = result.data;
-        if (data.code === 200) {
+        if (data.code === 200 || data.success) {
             success && success(data.data)
         } else {
             message.error(data.msg);

@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 var host = window.location.origin;
-var http = host + "/"
+var http = host + "/free-admin"
 
 export const requestLogin = (params) => axios.post(`${http}/login`, params).then((res) => res.data);
 
@@ -27,5 +27,5 @@ export const getEnum = (params) => axios.get(`${http}/enum`, {params: params});
 export const createClass = (params) => axios.post(`${http}/createClass`, {params: params});
 
 //手机号码归属地址查询
-export const getPhoneFrom = (params) => axios.get(`${http}/phone/search`, {params: params});
+export const getPhoneFrom = (params) => axios.get(`${http}/phone/from`, {params: params});
 

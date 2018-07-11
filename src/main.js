@@ -17,20 +17,20 @@ import routes from "./routes";
 import Mock from "./mock";
 import "./views/views";
 
-Mock.bootstrap();
+// Mock.bootstrap();
 
-Vue.use(ElementUI, {locale});
-Vue.use(VueRouter);
-Vue.use(Vuex);
+    Vue.use(ElementUI, {locale});
+    Vue.use(VueRouter);
+    Vue.use(Vuex);
 
-NProgress.configure({showSpinner: false});
+    NProgress.configure({showSpinner: false});
 
-const router = new VueRouter({
-    routes
-});
+    const router = new VueRouter({
+        routes
+    });
 
-router.beforeEach((to, from, next) => {
-    NProgress.start();
+    router.beforeEach((to, from, next) => {
+        NProgress.start();
 
     if (to.path == "/login") {
         sessionStorage.removeItem("user");
